@@ -1,3 +1,4 @@
+@ -1,45 +1,49 @@
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -15,12 +16,17 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
+const corsOrigins = (process.env.CORS_ORIGIN || "http://localhost:5173,http://localhost:5174")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
     origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: corsOrigins,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
