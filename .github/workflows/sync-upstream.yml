@@ -1,0 +1,33 @@
+name: Sync Upstream
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync upstream branch
+        run: |
+          chmod +x scripts/sync-upstream.sh
+          scripts/sync-upstream.sh https://github.com/harshsuiiii/Real-time-chat-app.git main main
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(sync): merge upstream changes"
+          title: "chore(sync): upstream updates"
+          body: "Automated upstream sync from harshsuiiii/Real-time-chat-app main branch."
+          branch: "chore/sync-upstream"
+          delete-branch: true
