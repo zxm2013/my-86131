@@ -93,6 +93,4 @@ Built-in helpers:
 - `npm run build`: install backend/frontend deps and build frontend
 - `npm start`: start backend (serves frontend in production mode)
 
-## License
-
-Use your own license policy before publishing publicly.
+this is powered by Codex-5.3
