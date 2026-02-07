@@ -1,4 +1,4 @@
-@ -6,6 +6,7 @@ This repository is prepared for:
+ This repository is prepared for:
 
 - local development and quick demo
 - Linux server deployment with `systemd`
@@ -6,7 +6,7 @@
 - upstream sync workflow for keeping updates in sync
 
 ## Features
-@ -79,6 +80,23 @@ Key values:
+ Key values:
 
 See `docs/LINUX_DEPLOY.md`.
 
